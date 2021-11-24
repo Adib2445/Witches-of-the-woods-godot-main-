@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scene/Spawwner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scene/LazerGunS.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/tree_texture.png" type="Texture" id=4]
+[ext_resource path="res://fonts/MainMEnu.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scene/Score.gd" type="Script" id=6]
+[ext_resource path="res://Ocean.png" type="Texture" id=7]
+[ext_resource path="res://scripts/ParallaxBackground.gd" type="Script" id=8]
+
+[node name="World" type="Node2D"]
+
+[node name="tree_texture" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1033.83, 662.369 )
+scale = Vector2( 8.1055, 0.417453 )
+texture = ExtResource( 4 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 248.995, 392.459 )
+scale = Vector2( 6.99998, 6.99998 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 88.2111, 367.874 )
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1130.43, 321.482 )
+
+[node name="Score" type="Label" parent="."]
+margin_right = 608.0
+margin_bottom = 169.0
+custom_fonts/font = ExtResource( 5 )
+text = "Score:"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainScore_txt" type="Label" parent="Score"]
+margin_left = 163.0
+margin_top = 8.0
+margin_right = 657.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Score"]
+script = ExtResource( 8 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Score/ParallaxBackground"]
+motion_mirroring = Vector2( 1100, 0 )
+
+[node name="Ocean" type="Sprite" parent="Score/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 522.379, 309.324 )
+scale = Vector2( 2.38056, 2.75926 )
+texture = ExtResource( 7 )

@@ -1,0 +1,179 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/MainMEnu.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/ButtonManager.gd" type="Script" id=2]
+[ext_resource path="res://Music/MainMinu.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scripts/HighScore_txt.gd" type="Script" id=4]
+[ext_resource path="res://Scene/Spawwner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scene/Option.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Ocean.png" type="Texture" id=8]
+[ext_resource path="res://scripts/ParallaxBackground.gd" type="Script" id=9]
+
+[node name="Control" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -56 )
+scale = Vector2( 1.44, 1.44 )
+motion_mirroring = Vector2( 1015, 0 )
+
+[node name="Ocean" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 508, 298 )
+scale = Vector2( 2.11667, 2.72222 )
+texture = ExtResource( 8 )
+
+[node name="enemySpawn" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1137.75, 339.208 )
+scale = Vector2( 2.13182, 2.84998 )
+
+[node name="MainMenu" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="MainMenu"]
+
+[node name="Label" type="Label" parent="MainMenu"]
+margin_left = 216.0
+margin_top = 8.0
+margin_right = 762.0
+margin_bottom = 140.0
+custom_fonts/font = ExtResource( 1 )
+text = "Witches of the wood"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 356.0
+margin_top = 164.0
+margin_right = 648.0
+margin_bottom = 266.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainMenu/Play"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -34.2063
+margin_right = 88.0
+margin_bottom = 35.7937
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option" type="Button" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 212.0
+margin_top = 316.0
+margin_right = 504.0
+margin_bottom = 418.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainMenu/Option"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -34.2063
+margin_right = 88.0
+margin_bottom = 35.7937
+custom_fonts/font = ExtResource( 1 )
+text = "Option"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 396.0
+margin_top = 460.0
+margin_right = 688.0
+margin_bottom = 562.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainMenu/Quit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -34.2063
+margin_right = 88.0
+margin_bottom = 35.7937
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainMenu"]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="HighScore_txt" type="Label" parent="MainMenu"]
+margin_left = 240.0
+margin_top = 88.0
+margin_right = 523.0
+margin_bottom = 153.0
+custom_fonts/font = ExtResource( 1 )
+text = "HighScore:"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainHightScore_txt" type="Label" parent="MainMenu/HighScore_txt"]
+margin_left = 304.0
+margin_right = 587.0
+margin_bottom = 65.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option_menu" parent="." instance=ExtResource( 7 )]
+visible = false
+[connection signal="pressed" from="MainMenu/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="MainMenu/Option" to="." method="_on_Option_pressed"]
+[connection signal="pressed" from="MainMenu/Quit" to="." method="_on_Quit_pressed"]
